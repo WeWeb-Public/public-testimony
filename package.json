@@ -5,7 +5,7 @@
         "type": "git",
         "url": "https://github.com/getweweb/jll-slider"
     },
-    "version": "0.0.1",
+    "version": "0.0.2",
     "private": true,
     "scripts": {
         "build": "weweb-build",
