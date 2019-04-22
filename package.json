@@ -1,11 +1,11 @@
 {
-    "name": "jll-slider",
+    "name": "testimony",
     "type": "section",
     "repository": {
         "type": "git",
         "url": "https://github.com/getweweb/jll-slider"
     },
-    "version": "0.0.2",
+    "version": "0.0.1",
     "private": true,
     "scripts": {
         "build": "weweb-build",

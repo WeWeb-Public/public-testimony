@@ -1,14 +1,13 @@
 module.exports = [
     {
-        name: 'slider',
+        name: 'testimony',
         category: 'features',
         storeName: {
-            en: "Use cases",
-            fr: "Cas d'usage"
+            en: "testimonies",
+            fr: "Témoignages"
         },
         storeDesc: {
-            en: "Navigation bar",
-            fr: "Barre de Navigation"
+            en: "Section to display testimonies"
         }
     }
 ]

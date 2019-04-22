@@ -6,12 +6,8 @@
         <!-- BLOCK MANAGER -->
         <div class="block-manager">
             <!-- wwManager:start -->
-            <span v-show="editMode" v-if="section.data.leftBlocks.length > 1"  class="remove-block-btn" @click="deleteBlock()">
-                Remove Block
-            </span>
-            <span v-show="editMode" class="add-block-btn" @click="addBlock()">
-                Add Block
-            </span>
+            <span v-show="editMode" v-if="section.data.leftBlocks.length > 1" class="remove-block-btn" @click="deleteBlock()">Remove Block</span>
+            <span v-show="editMode" class="add-block-btn" @click="addBlock()">Add Block</span>
             <!-- wwManager:end -->
             <span v-show="section.data.leftBlocks.length > 1">{{this.indexBlock+1}} sur {{this.section.data.leftBlocks.length}}</span>
             <span v-show="section.data.leftBlocks.length > 1" class="next-block-btn" @click="nextBlock()">
@@ -96,41 +92,41 @@ export default {
             array.splice(options.index, 1);
             this.sectionCtrl.update(this.section);
         },
-        
-        addBlock () {
+
+        addBlock() {
             this.section.data.leftBlocks.push(this.getNewLeftBlock())
             this.section.data.rightBlocks.push(this.getNewRightBlock())
             this.indexBlock = this.section.data.leftBlocks.length - 1
             this.sectionCtrl.update(this.section)
         },
-        deleteBlock () { 
+        deleteBlock() {
             this.section.data.leftBlocks.splice(this.indexBlock, 1)
             this.section.data.rightBlocks.splice(this.indexBlock, 1)
             this.indexBlock = 0
             this.sectionCtrl.update(this.section)
         },
         // wwManager:end
-        getNewRightBlock () {
+        getNewRightBlock() {
             return {
                 uniqueId: wwLib.wwUtils.getUniqueId(),
                 bg: wwLib.wwObject.getDefault({ type: 'ww-color' }),
                 blocks: []
             }
         },
-        getNewLeftBlock () {
+        getNewLeftBlock() {
             return {
                 uniqueId: wwLib.wwUtils.getUniqueId(),
                 bg: wwLib.wwObject.getDefault({ type: 'ww-image' }),
                 blocks: []
             }
         },
-        nextBlock () {
+        nextBlock() {
             this.indexBlock = (this.indexBlock + 1) % this.section.data.leftBlocks.length
         },
-        getPos (array, idx) {
+        getPos(array, idx) {
             if (this.indexBlock === idx)
-               return 'active'
-            if (idx + 1 === this.indexBlock || (idx === (array.length-1) && this.indexBlock === 0))
+                return 'active'
+            if (idx + 1 === this.indexBlock || (idx === (array.length - 1) && this.indexBlock === 0))
                 return 'previous'
             // if (this.indexBlock + 1 === idx || (this.indexBlock === (array.length-1) && idx === 0))
             //     return 'next'
@@ -152,7 +148,13 @@ export default {
         display: flex;
         align-items: center;
         pointer-events: all;
+        margin-right: 10%;
         z-index: 20000;
+
+        @media (max-width: 1024px) {
+            top: 51%;
+            bottom: unset;
+        }
 
         .next-block-btn {
             cursor: pointer;
@@ -163,7 +165,7 @@ export default {
         .add-block-btn {
             position: relative;
             cursor: pointer;
-            background: #19947C;
+            background: #19947c;
             color: white;
             font-weight: bold;
             border-radius: 20px;
@@ -173,7 +175,7 @@ export default {
         .remove-block-btn {
             position: relative;
             cursor: pointer;
-            background: #CE003B;
+            background: #ce003b;
             color: white;
             font-weight: bold;
             border-radius: 20px;
@@ -186,8 +188,16 @@ export default {
         position: relative;
         display: flex;
         flex-wrap: wrap;
-        height: 100vh;
-        
+        height: 75vh;
+        width: 100%;
+        // width: 60%;
+        // margin-left: 20%;
+
+        @media (min-width: 992px) {
+            width: 80%;
+            margin-left: 10%;
+        }
+
         .block {
             position: absolute;
             top: 0;
@@ -222,7 +232,14 @@ export default {
 
         .left-container {
             position: relative;
-            width: 50%;
+            width: 60%;
+            margin-left: 20%;
+            overflow: hidden;
+
+            @media (min-width: 992px) {
+                width: 33.3333%;
+                margin-left: 0%;
+            }
 
             .block.active {
                 -webkit-animation: 1s block-anim-enter ease-in;
@@ -242,7 +259,11 @@ export default {
         }
         .right-container {
             position: relative;
-            width: 50%;
+            width: 100%;
+
+            @media (min-width: 992px) {
+                width: 66.6666%;
+            }
 
             .block.active {
                 opacity: 0;
@@ -264,52 +285,55 @@ export default {
     }
 }
 
-@keyframes block-anim-leave { 
-    0% {}
-    100% { transform: translateY(-100%); }
+@keyframes block-anim-leave {
+    0% {
+    }
+    100% {
+        transform: translateY(-100%);
+    }
 }
 
-@keyframes block-anim-enter { 
-    0% { transform: translateY(100%); }
-    100% {}
+@keyframes block-anim-enter {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+    }
 }
 
-@keyframes content-fade-enter { 
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+@keyframes content-fade-enter {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
-@keyframes content-fade-leave { 
-    0% { opacity: 1; }
-    100% { opacity: 0; }
+@keyframes content-fade-leave {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @media (max-width: 1024px) {
-    .jllUseCases {
-        .block-manager {
-            top: 51%;
-            bottom: unset;
+    @keyframes block-anim-leave {
+        0% {
         }
-
-        .news-container {
-            height: 100vh;
-            .left-container {
-                width: 100%;
-            }
-            .right-container {
-                width: 100%;
-            }
+        100% {
+            transform: translateX(100%);
         }
     }
 
-    @keyframes block-anim-leave { 
-        0% {}
-        100% { transform: translateX(100%); }
-    }
-
-    @keyframes block-anim-enter { 
-        0% { transform: translateX(-100%); }
-        100% {}
+    @keyframes block-anim-enter {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+        }
     }
 }
 </style>
