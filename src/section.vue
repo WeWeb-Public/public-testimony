@@ -1,5 +1,5 @@
 <template>
-    <div class="jllUseCases">
+    <div class="testimony">
         <!-- wwManager:start -->
         <wwSectionEditMenu v-bind:sectionCtrl="sectionCtrl"></wwSectionEditMenu>
         <!-- wwManager:end -->
@@ -137,7 +137,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.jllUseCases {
+.testimony {
     position: relative;
     overflow: hidden;
 
@@ -149,7 +149,7 @@ export default {
         align-items: center;
         pointer-events: all;
         margin-right: 10%;
-        z-index: 20000;
+        z-index: 10;
 
         @media (max-width: 1024px) {
             top: 51%;
@@ -207,7 +207,6 @@ export default {
             display: none;
             background: white;
             pointer-events: all;
-            overflow-y: auto;
 
             .block-image {
                 position: absolute;
@@ -241,17 +240,15 @@ export default {
                 margin-left: 0%;
             }
 
+            .block {
+                overflow: hidden;
+            }
+
             .block.active {
-                -webkit-animation: 1s block-anim-enter ease-in;
-                -moz-animation: 1s block-anim-enter ease-in;
-                -o-animation: 1s block-anim-enter ease-in;
                 animation: 1s block-anim-enter ease-in;
                 animation-fill-mode: forwards;
             }
             .block.previous {
-                -webkit-animation: 1s block-anim-leave ease-in;
-                -moz-animation: 1s block-anim-leave ease-in;
-                -o-animation: 1s block-anim-leave ease-in;
                 animation: 1s block-anim-leave ease-in;
                 animation-fill-mode: forwards;
                 animation-delay: 0.1s;
@@ -265,19 +262,25 @@ export default {
                 width: 66.6666%;
             }
 
+            .block {
+                max-height: calc(100% - 40px);
+                overflow-y: auto;
+                overflow-x: hidden;
+                margin-top: 40px;
+
+                @media (min-width: 992px) {
+                    margin-top: 0;
+                    height: auto;
+                }
+            }
+
             .block.active {
                 opacity: 0;
-                -webkit-animation: 1s content-fade-enter 1s ease;
-                -moz-animation: 1s content-fade-enter 1s ease;
-                -o-animation: 1s content-fade-enter 1s ease;
                 animation: 1s content-fade-enter 1s ease;
                 animation-fill-mode: forwards;
             }
             .block.previous {
                 opacity: 1;
-                -webkit-animation: 1s content-fade-leave ease-out;
-                -moz-animation: 1s content-fade-leave ease-out;
-                -o-animation: 1s content-fade-leave ease-out;
                 animation: 1s content-fade-leave ease-out;
                 animation-fill-mode: forwards;
             }
